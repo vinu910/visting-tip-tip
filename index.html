@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <title>Visiting Card — Tip Top Saree Collection</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --accent: #8b0b5b;
+      --muted: #4e3b60;
+      --card: #ffffff;
+      --bg1: #f7e6ef;
+      --bg2: #f0cde3;
+      --bg3: #fff7fb;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Segoe UI", Roboto, "Noto Sans", Arial;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      background-attachment: fixed;
+      color: var(--muted);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card);
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(70, 30, 60, 0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 28px;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .meta {
+      margin-top: 6px;
+      color: #4a2b45;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .line {
+      margin: 18px 0;
+      border-top: 1px dashed #e4cde1;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 17px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(139, 11, 91, 0.2);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #a90d6d;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 18px;
+      box-shadow: 0 4px 20px rgba(100, 50, 100, 0.2);
+    }
+
+    .note {
+      color: #4b3450;
+      font-size: 15px;
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      h1 { font-size: 22px; }
+      button { font-size: 15px; padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="companyTitle">
+    <h1 id="companyTitle">Visiting Card<br> Top Saree Collection</h1>
+    <div class="meta">पता: नियर शनि बाज़ार चौक, मेन मुबारकपुर रोड, किराड़ी सुल्तान नगर, नई दिल्ली — 110086<br>📞 Mobile: 9953098555</div>
+    <div class="meta">
+      📍 <a href="https://www.google.com/maps/dir//Near+Shani+bazar,+chowk,+Main+Mubarakpur+Rd,+Kirari+Suleman+Nagar,+Delhi,+110086" 
+      target="_blank" style="color:#8b0b5b;text-decoration:none;font-weight:bold;">Google Map पर देखें</a>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="actions">
+      <button id="speakDetailsBtn">🔊 विवरण सुनें</button>
+    </div>
+
+    <!-- 👇 यहां आपकी अपलोड की गई इमेज दिखाई जाएगी -->
+   <img src="https://content.jdmagicbox.com/comp/delhi/f2/011pxx11.xx11.120828133218.r7w5/catalogue/tip-top-saree-emporium-delhi-f2g3c.jpg" alt="Tip Top Saree Collection">
+
+
+    <div class="note">हम हर प्रकार की साड़ी रखते हैं — एक बार हमें सेवा का अवसर अवश्य दें।</div>
+  </div>
+
+  <script>
+    const detailsText = `
+    नमस्कार! मैं टिप टॉप साड़ी कलेक्शन से बात कर रहा हूँ।
+हमारी दुकान में हर प्रकार की साड़ियाँ, गाउन और लहंगे उपलब्ध हैं।
+हम रेशम, कॉटन, जॉर्जेट, बनारसी, डिज़ाइनर साड़ियाँ, पार्टी वियर गाउन और शादी-ब्याह के लहंगे की पूरी रेंज रखते हैं।
+हमारे हर उत्पाद की गुणवत्ता बेहतरीन और दाम उचित हैं।
+हम हमेशा नए ट्रेंड और डिज़ाइन के साथ चलते हैं ताकि आपको मिले सबसे सुंदर और आकर्षक कलेक्शन।
+हमारा पता है — नियर शनि बाज़ार चौक, मेन मुबारकपुर रोड, किराड़ी सुल्तान नगर, नई दिल्ली — 110086।
+कृपया एक बार हमें ज़रूर विज़िट करें और सेवा का अवसर दें।
+धन्यवाद!
+    `;
+
+    function pickMaleHindiVoice() {
+      const voices = window.speechSynthesis.getVoices();
+      return voices.find(v => /hi-IN/i.test(v.lang) && /male/i.test(v.name)) 
+          || voices.find(v => /hi-IN/i.test(v.lang)) 
+          || voices.find(v => /en-IN/i.test(v.lang)) 
+          || voices[0];
+    }
+
+    function speak(text) {
+      if (!('speechSynthesis' in window)) {
+        alert('Speech Synthesis आपके ब्राउज़र में उपलब्ध नहीं है।');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'hi-IN';
+      utter.rate = 0.95;
+      utter.pitch = 0.9;
+      utter.voice = pickMaleHindiVoice();
+      window.speechSynthesis.speak(utter);
+    }
+
+    document.getElementById('speakDetailsBtn').addEventListener('click', () => speak(detailsText));
+  </script>
+</body>
+</html>
